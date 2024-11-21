@@ -3,6 +3,7 @@ import { Pool } from 'pg';
 let pool: Pool | null = null;
 
 // fixed errors
+// more changes
 const conn = () => {
   if (!pool) {
     pool = new Pool({
