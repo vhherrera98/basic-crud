@@ -2,6 +2,7 @@ import { Pool } from 'pg';
 
 let pool: Pool | null = null;
 
+// fixed errors
 const conn = () => {
   if (!pool) {
     pool = new Pool({
