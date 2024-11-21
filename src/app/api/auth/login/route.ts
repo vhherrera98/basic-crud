@@ -5,17 +5,17 @@ import { conn } from "@/utils/database";
 export async function POST(req: Request) {
 
   try {
-    const createTableQuery = `
-    CREATE TABLE IF NOT EXISTS users(
-      id SERIAL PRIMARY KEY,
-      fullname VARCHAR(100) NOT NULL,
-      email VARCHAR(100) NOT NULL,
-      password_hash TEXT NOT NULL,
-      created_on TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-    );
-    `
+    // const createTableQuery = `
+    // CREATE TABLE IF NOT EXISTS users(
+    //   id SERIAL PRIMARY KEY,
+    //   fullname VARCHAR(100) NOT NULL,
+    //   email VARCHAR(100) NOT NULL,
+    //   password_hash TEXT NOT NULL,
+    //   created_on TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    // );
+    // `
 
-    await conn().query(createTableQuery);
+    // await conn().query(createTableQuery);
 
 
     const body = await req.json();
