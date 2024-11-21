@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { MyProvider } from "@/context/ProviderToken";
+import { Navbar } from "@/components/Navbar";
+// import { useEffect } from "react";
+// import { useToken } from "@/hooks/useToken";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -23,12 +27,24 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // const { getCookie } = useToken()
+  // useEffect(() => {
+  //   getCookie();
+  // }, [])
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <MyProvider>
+          <main id="ROOT">
+            <Navbar />
+            <div>
+              {children}
+            </div>
+          </main>
+        </MyProvider>
       </body>
     </html>
   );
