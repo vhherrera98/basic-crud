@@ -39,6 +39,7 @@ export async function DELETE(req: Request, {
   try {
 
     const id = (await params).id;
+    console.log(id)
 
     const query = "DELETE FROM tasks WHERE id = $1";
     const values = [id];

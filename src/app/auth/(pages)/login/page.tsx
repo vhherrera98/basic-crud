@@ -23,5 +23,5 @@ export default function PageRegister() {
   //   syncLocalStorageToCookie();
   // }, [])
 
-  return <SigninForm />
+  return <SigninForm path={`${process.env.PATHNAME}`}/>
 }

@@ -7,9 +7,10 @@ interface IProps {
  children: React.ReactNode;
  className?: string;
  id: number;
+ path: string;
 }
 
-export function DeletedButton({ children, className, id }: IProps) {
+export function DeletedButton({ children, className, id, path }: IProps) {
 
  const router = useRouter();
 
@@ -26,31 +27,37 @@ export function DeletedButton({ children, className, id }: IProps) {
   }).then(async (result) => {
    if (result.isConfirmed) {
 
-    const response = await fetch(`http://localhost:3000/api/tasks/${id}`, {
-     method: 'DELETE',
-     mode: 'cors',
-     headers: {
-      'Content-Type': 'application/json'
+    try {
+     console.log(`${path}/tasks/${id}`)
+     const response = await fetch(`${path}/tasks/${id}`, {
+      method: 'DELETE',
+      mode: 'cors',
+      headers: {
+       'Content-Type': 'application/json'
+      }
+     });
+
+     const result = await response.json();
+
+     if (result.status === 'OK') {
+
+      Toast().fire({
+       icon: "success",
+       title: result.message
+      });
+
+      router.push('/tasks')
+
+     } else {
+
+      Toast().fire({
+       icon: "error",
+       title: result.message
+      });
      }
-    });
-
-    const result = await response.json();
-
-    if (result.status === 'OK') {
-
-     Toast().fire({
-      icon: "success",
-      title: result.message
-     });
-
-     router.push('/tasks')
-
-    } else {
-
-     Toast().fire({
-      icon: "error",
-      title: result.message
-     });
+    } catch (error) {
+     console.log(path, id)
+     console.log(error)
     }
    }
   });

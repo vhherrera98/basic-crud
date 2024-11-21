@@ -10,13 +10,12 @@ interface IProps extends IResponse {
 }
 
 async function fetching(): Promise<IProps> {
- const response = await fetch('http://localhost:3000/api/tasks');
+ const response = await fetch(`${process.env.PATHNAME}/tasks`);
  const result = await response.json();
  return result
 }
 
 export default async function Page() {
-
  const response = await fetching();
 
  const columns = [
@@ -76,7 +75,7 @@ export default async function Page() {
          <td className="py-2 px-4 border-b border-gray-200 text-gray-800">
           <div className="flex flex-col items-center justify-center gap-3">
            <Link href={`/tasks/${id}`} className="w-full py-1 px-3 rounded-md text-gray-800 bg-yellow-500 font-bold text-xs text-center">Modificar</Link>
-           <DeletedButton id={id} className="w-full py-1 px-3 rounded-md text-gray-800 bg-red-500 font-bold text-xs">
+           <DeletedButton path={`${process.env.PATHNAME}`} id={id} className="w-full py-1 px-3 rounded-md text-gray-800 bg-red-500 font-bold text-xs">
             Eliminar
            </DeletedButton>
           </div>

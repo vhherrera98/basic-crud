@@ -23,7 +23,7 @@ interface IFormInput {
 
 
 
-export function SigninForm() {
+export function SigninForm({ path }: { path: string }) {
 
   const router = useRouter();
   const { setCookie } = useToken();
@@ -32,7 +32,7 @@ export function SigninForm() {
   const { validate } = useValidate(errors)
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
-      const response = await fetch('http://localhost:3000/api/auth/login', {
+      const response = await fetch(`${path}/auth/login`, {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -42,6 +42,7 @@ export function SigninForm() {
       });
 
       const result = await response.json();
+      console.log(result)
 
       if (result.status === 'OK') {
         // Toast().fire({
@@ -66,7 +67,7 @@ export function SigninForm() {
       }
 
     } catch (error) {
-      alert(error)
+      console.log(error)
       Toast().fire({
         icon: "error",
         title: 'Internal error server'

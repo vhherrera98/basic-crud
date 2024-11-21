@@ -13,7 +13,7 @@ interface IFormInput {
  confirm_password: string
 }
 
-export function Signup() {
+export function Signup({ path }: { path: string }) {
 
  const router = useRouter();
  const { setCookie } = useToken();
@@ -22,7 +22,7 @@ export function Signup() {
  const { validate } = useValidate(errors)
  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
   try {
-   const response = await fetch('http://localhost:3000/api/auth/register', {
+   const response = await fetch(`${path}/auth/register`, {
     method: 'POST',
     mode: 'cors',
     headers: {
