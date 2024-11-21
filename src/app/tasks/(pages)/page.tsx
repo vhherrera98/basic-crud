@@ -4,8 +4,6 @@ import { IResponse, ITask } from "@/interfaces";
 import moment from 'moment'
 import Link from "next/link";
 import { DeletedButton } from "../_components/Delete.button";
-// import { Table } from "../_components/Table";
-
 
 interface IProps extends IResponse {
  data: ITask[]
@@ -28,8 +26,6 @@ export default async function Page() {
   { Header: 'Creacion', accessor: 'created_on' },
   { Header: 'Acciones', accessor: 'actions' },
  ];
-
-
 
  return (
   <main className="container mx-auto px-5 md:px-0 py-10">
